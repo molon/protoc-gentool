@@ -1,6 +1,6 @@
 # Utility docker image to generate Go files from .proto definition.
 # https://github.com/infobloxopen/atlas-gentool
-IMAGE_NAME := infoblox/atlas-gentool
+IMAGE_NAME := molon/protoc-gentool # infoblox/atlas-gentool
 
 GO_PATH              	:= /go
 SRCROOT_ON_HOST      	:= $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
@@ -44,7 +44,7 @@ test: test-gen test-check test-clean
 
 test-gen:
 	docker run --rm -v $(SRCROOT_ON_HOST):$(SRCROOT_IN_CONTAINER) \
-	 infoblox/atlas-gentool:latest \
+	 molon/protoc-gentool:latest \
 	--go_out=plugins=grpc:. \
 	--grpc-gateway_out=logtostderr=true:. \
 	--validate_out="lang=go:." \
