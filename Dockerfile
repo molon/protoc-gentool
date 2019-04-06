@@ -98,6 +98,26 @@ RUN apk add --no-cache libstdc++ protobuf-dev
 COPY --from=builder /out/usr /usr
 COPY --from=builder /out/protos /
 
+# 这玩意不能再alpine上玩耍，先不整了
+# ##### -------------------------- protoc-gen-dart
+# # The version and the binaries checksum for the dart sdk.
+# ENV DART_VERSION 2.2.0
+# ENV DART_DOWNLOAD_URL https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_VERSION}/sdk/dartsdk-linux-arm64-release.zip
+# ENV DART_DOWNLOAD_SHA256 f11926f39cee0157e447a6663370a58f2adf0f8adbff16cce5b5b91c24aa1347
+
+# # Download and install the dark sdk
+# RUN curl -fsSL ${DART_DOWNLOAD_URL} -o dart-sdk.zip \
+#     && echo "${DART_DOWNLOAD_SHA256}  dart-sdk.zip" | sha256sum -c - \
+#     && unzip dart-sdk.zip \
+#     && rm -rf dart-sdk.zip
+
+# Install proto-gen-dart
+# RUN ./dart-sdk/bin/pub global activate protoc_plugin \
+#     && ls ${HOME} \
+#     && install -c ${HOME}/.pub-cache/bin/protoc-gen* /out/usr/bin/ \
+#     && ls /out/usr/bin/
+# ##### -------------------------- end protoc-gen-dart
+
 WORKDIR /go/src
 
 # protoc as an entry point for all plugins with import paths set
