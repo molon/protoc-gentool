@@ -122,22 +122,23 @@ WORKDIR /go/src
 
 # protoc as an entry point for all plugins with import paths set
 ENTRYPOINT ["protoc", "-I.", \
+    "-I/go/src", \
     # required import paths for protoc-gen-grpc-gateway plugin
-    "-Igithub.com/grpc-ecosystem/grpc-gateway/third_party/googleapis", \
+    "-I/go/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis", \
     # required import paths for protoc-gen-swagger plugin
-    "-Igithub.com/grpc-ecosystem/grpc-gateway", "-Igithub.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options", \
+    "-I/go/src/github.com/grpc-ecosystem/grpc-gateway", "-I/go/src/github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options", \
     # required import paths for protoc-gen-validate plugin
-    "-Igithub.com/lyft/protoc-gen-validate/validate", \
+    "-I/go/src/github.com/lyft/protoc-gen-validate/validate", \
     # required import paths for go-proto-validators plugin
-    "-Igithub.com/mwitkow/go-proto-validators", \
+    "-I/go/src/github.com/mwitkow/go-proto-validators", \
     # googleapis proto files
-    "-Igithub.com/googleapis/googleapis", \
+    "-I/go/src/github.com/googleapis/googleapis", \
     # required import paths for protoc-gen-gorm plugin
-    "-Igithub.com/infobloxopen/protoc-gen-gorm", \
+    "-I/go/src/github.com/infobloxopen/protoc-gen-gorm", \
     # required import paths for protoc-gen-atlas-query-validate plugin
-    "-Igithub.com/infobloxopen/protoc-gen-atlas-query-validate", \
+    "-I/go/src/github.com/infobloxopen/protoc-gen-atlas-query-validate", \
     # required import paths for protoc-gen-preprocess plugin
-    "-Igithub.com/infobloxopen/protoc-gen-preprocess", \
+    "-I/go/src/github.com/infobloxopen/protoc-gen-preprocess", \
     # required import paths for protoc-gen-atlas-validate plugin
-    "-Igithub.com/infobloxopen/protoc-gen-atlas-validate" \
+    "-I/go/src/github.com/infobloxopen/protoc-gen-atlas-validate" \
 ]
